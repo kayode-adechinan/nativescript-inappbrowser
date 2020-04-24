@@ -1,0 +1,70 @@
+{
+	"name": "nativescript-inappbrowser",
+	"version": "2.3.0",
+	"description": "InAppBrowser for NativeScript",
+	"main": "InAppBrowser",
+	"typings": "index.d.ts",
+	"nativescript": {
+		"platforms": {
+			"android": "6.5.0",
+			"ios": "6.5.0"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/proyecto26/nativescript-inappbrowser.git"
+	},
+	"scripts": {
+		"tsc": "npm i && tsc",
+		"build": "npm run tsc && npm run build.native",
+		"build.native": "node scripts/build-native.js",
+		"test.android": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build android && tns test android --justlaunch",
+		"test.ios": "npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios && tns test ios --justlaunch",
+		"tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
+		"ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'",
+		"prepack": "npm run build.native",
+		"demo.ios": "npm i && cd ../demo && tns run ios --inspector",
+		"demo.android": "npm i && cd ../demo && tns run android",
+		"demo.reset": "cd ../demo && npx rimraf -- hooks node_modules platforms package-lock.json",
+		"plugin.prepare": "npm run build && cd ../demo && tns plugin remove nativescript-inappbrowser && tns plugin add ../src",
+		"clean": "npm run demo.reset && npx rimraf -- node_modules package-lock.json && npm i"
+	},
+	"keywords": [
+		"NativeScript",
+		"JavaScript",
+		"Android",
+		"iOS",
+		"browser",
+		"inappbrowser",
+		"in-app-browser",
+		"InAppBrowser",
+		"Chrome",
+		"Safari",
+		"Chrome Custom Tabs",
+		"SafariServices",
+		"AuthenticationServices",
+		"SFSafariViewController",
+		"CustomTabsIntent",
+		"ChromeTabsManagerActivity"
+	],
+	"author": {
+		"name": "Juan David Nicholls Cardona",
+		"email": "jdnichollsc@hotmail.com"
+	},
+	"bugs": {
+		"url": "https://github.com/proyecto26/nativescript-inappbrowser/issues"
+	},
+	"license": "MIT",
+	"homepage": "https://github.com/proyecto26/nativescript-inappbrowser",
+	"devDependencies": {
+		"tns-core-modules": "^6.5.1",
+		"tns-platform-declarations": "^6.5.1",
+		"typescript": "~3.8.3",
+		"prompt": "^1.0.0",
+		"rimraf": "^3.0.2",
+		"tslint": "^6.1.1",
+		"semver": "^7.2.1"
+	},
+	"dependencies": {},
+	"bootstrapper": "nativescript-plugin-seed"
+}
